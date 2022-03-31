@@ -41,7 +41,6 @@ typedef struct s_table
 	pthread_mutex_t printlock;
 
 	uint64_t		start;
-	int				*forks;
 	struct s_philo	*philos;
 	pthread_t		*pthreads;
 	pthread_mutex_t	*mutex;

@@ -6,7 +6,7 @@
 /*   By: tjolivea <tjolivea@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 13:13:15 by tjolivea          #+#    #+#             */
-/*   Updated: 2022/03/31 20:30:45 by tjolivea         ###   ########.fr       */
+/*   Updated: 2022/03/31 21:12:26 by tjolivea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,11 @@ int ft_init_forks(t_table *table)
     int i;
     
     table->mutex = malloc(sizeof(pthread_mutex_t) * table->count);
-    table->forks = malloc(sizeof(int) * table->count);
-    if (!table->mutex || !table->forks)
+    if (!table->mutex)
         return (1);
     i = -1;
     while (++i < table->count)
-    {
         pthread_mutex_init(&table->mutex[i], NULL);
-        table->forks[i] = UNUSED;
-    }
     pthread_mutex_init(&table->printlock, NULL);
     return (0);
 }

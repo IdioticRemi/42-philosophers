@@ -23,7 +23,6 @@ static int cleanse(t_table *table)
 			pthread_mutex_destroy(&table->mutex[i]);
 		free(table->mutex);
 	}
-	free(table->forks);
 	free(table->philos);
 	free(table->pthreads);
 	return (0);
