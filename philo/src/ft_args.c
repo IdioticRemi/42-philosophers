@@ -12,18 +12,20 @@
 
 #include "philo.h"
 
-static void	ft_parse_args(int argc, char **argv, t_philo *philo)
+static void	ft_parse_args(int argc, char **argv, t_table *table)
 {
-	philo->count = ft_atoi(argv[1]);
-	philo->death_time = ft_atoi(argv[2]);
-	philo->eat_time = ft_atoi(argv[3]);
-	philo->sleep_time = ft_atoi(argv[4]);
-	philo->min_eat = -1;
+	table->philos = NULL;
+	table->forks = NULL;
+	table->count = ft_atoi(argv[1]);
+	table->death_time = ft_atoi(argv[2]);
+	table->eat_time = ft_atoi(argv[3]);
+	table->sleep_time = ft_atoi(argv[4]);
+	table->min_eat = -1;
 	if (argc == 6)
-		philo->min_eat = ft_atoi(argv[5]);
+		table->min_eat = ft_atoi(argv[5]);
 }
 
-int	ft_process_args(int argc, char **argv, t_philo *philo)
+int	ft_process_args(int argc, char **argv, t_table *table)
 {
 	int	i;
 
@@ -34,6 +36,6 @@ int	ft_process_args(int argc, char **argv, t_philo *philo)
 		i++;
 	if (i != argc)
 		return (ft_error("incorrect usage", ARG_ERR_STR));
-	ft_parse_args(argc, argv, philo);
+	ft_parse_args(argc, argv, table);
 	return (0);
 }

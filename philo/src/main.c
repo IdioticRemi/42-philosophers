@@ -12,21 +12,36 @@
 
 #include "philo.h"
 
-static void	ft_debug(t_philo *p)
+static int cleanse(t_table *table)
 {
-	printf("PHILOSOPHERS : %d\n", p->count);
-	printf("DEATH_TIME   : %d\n", p->death_time);
-	printf("EAT_TIME     : %d\n", p->eat_time);
-	printf("SLEEP_TIME   : %d\n", p->sleep_time);
-	printf("MIN_EAT      : %d\n", p->min_eat);
+	int	i;
+
+	if (table->mutex)
+	{
+		i = -1;
+		while (++i < table->count)
+			pthread_mutex_destroy(&table->mutex[i]);
+		free(table->mutex);
+	}
+	free(table->forks);
+	free(table->philos);
+	free(table->pthreads);
+	return (0);
 }
 
 int	main(int argc, char **argv)
 {
-	t_philo	philo;
+	t_table	table;
 
-	if (ft_process_args(argc, argv, &philo))
+	if (ft_process_args(argc, argv, &table))
 		return (1);
-	ft_debug(&philo);
-	return (0);
+	if (ft_init_forks(&table))
+		return (1);
+	if (ft_init_philos(&table))
+		return (cleanse(&table) + 1);
+	table.start = ft_get_ms();
+	if (ft_create_pthreads(&table))
+		return (cleanse(&table) + 1);
+	ft_wait_pthreads(&table);
+	return (cleanse(&table));
 }
