@@ -18,7 +18,7 @@ OBJS	= $(addprefix $(OBJ_DIR), $(__SRCS:.c=.o))
 # Compile
 CC		= clang
 
-CFLAGS	= -Wall -Werror -Wextra
+CFLAGS	= -Wall -Werror -Wextra #-fsanitize=thread
 INCLUDE	= -I $(INC_DIR)
 LIBS	= -lpthread
 

@@ -6,13 +6,22 @@
 /*   By: tjolivea <tjolivea@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 15:59:16 by tjolivea          #+#    #+#             */
-/*   Updated: 2022/03/30 17:04:25 by tjolivea         ###   ########lyon.fr   */
+/*   Updated: 2022/04/01 23:12:20 by tjolivea         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static int cleanse(t_table *table)
+t_uint64	get_start(void)
+{
+	static t_uint64	start = 0;
+
+	if (!start)
+		start = ft_get_ms();
+	return (start);
+}
+
+static int	cleanse(t_table *table)
 {
 	int	i;
 
@@ -25,6 +34,7 @@ static int cleanse(t_table *table)
 	}
 	free(table->philos);
 	free(table->pthreads);
+	pthread_mutex_destroy(&table->security);
 	return (0);
 }
 
@@ -38,7 +48,6 @@ int	main(int argc, char **argv)
 		return (1);
 	if (ft_init_philos(&table))
 		return (cleanse(&table) + 1);
-	table.start = ft_get_ms();
 	if (ft_create_pthreads(&table))
 		return (cleanse(&table) + 1);
 	ft_wait_pthreads(&table);

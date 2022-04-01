@@ -15,6 +15,7 @@
 static void	ft_parse_args(int argc, char **argv, t_table *table)
 {
 	table->philos = NULL;
+	table->end = 0;
 	table->count = ft_atoi(argv[1]);
 	table->death_time = ft_atoi(argv[2]);
 	table->eat_time = ft_atoi(argv[3]);
