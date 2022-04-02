@@ -6,7 +6,7 @@
 /*   By: tjolivea <tjolivea@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 13:34:28 by tjolivea          #+#    #+#             */
-/*   Updated: 2022/04/02 00:24:46 by tjolivea         ###   ########lyon.fr   */
+/*   Updated: 2022/04/02 16:23:07 by tjolivea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	ft_has_ended(t_table *table, int i)
 	pthread_mutex_lock(&table->security);
 	if ((&table->philos[i])->last_meal + table->death_time <= ft_get_ms())
 	{
-		printf(FMT_DEAD, ft_get_ms() - get_start(), i);
+		printf(FMT_DEAD, ft_get_ms() - get_start(), i + 1);
 		table->end = 1;
 		pthread_mutex_unlock(&table->security);
 		return (1);

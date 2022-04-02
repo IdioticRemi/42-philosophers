@@ -37,5 +37,9 @@ int	ft_process_args(int argc, char **argv, t_table *table)
 	if (i != argc)
 		return (ft_error("incorrect usage", ARG_ERR_STR));
 	ft_parse_args(argc, argv, table);
+	if (!table->count)
+		return (ft_error("incorrect usage", "amount of philos must be > 0"));
+	if (!table->eat_time || !table->sleep_time)
+		return (ft_error("incorrect usage", "timings must be > 0"));
 	return (0);
 }

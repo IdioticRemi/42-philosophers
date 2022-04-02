@@ -6,7 +6,7 @@
 /*   By: tjolivea <tjolivea@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 13:51:40 by tjolivea          #+#    #+#             */
-/*   Updated: 2022/04/02 00:20:05 by tjolivea         ###   ########lyon.fr   */
+/*   Updated: 2022/04/02 16:26:00 by tjolivea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	ft_action_eat(t_philo *philo)
 	philo->times_ate++;
 	philo->last_meal = ft_get_ms();
 	pthread_mutex_unlock(philo->security);
-	ft_print(philo, "is eating.");
+	ft_print2(philo, "has taken a fork.", "is eating.");
 	ft_sleep(philo->eat_time);
 	pthread_mutex_unlock(philo->rfork);
 	pthread_mutex_unlock(philo->lfork);

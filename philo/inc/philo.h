@@ -68,6 +68,7 @@ int			ft_create_pthreads(t_table *table);
 void		*ft_philo_main(void *philo_ptr);
 t_uint64	ft_get_ms(void);
 void		ft_print(t_philo *philo, char *action);
+void		ft_print2(t_philo *philo, char *a1, char *a2);
 void		ft_sleep(long ms);
 
 // Utils
